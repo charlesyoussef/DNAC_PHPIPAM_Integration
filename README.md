@@ -4,7 +4,7 @@
 
 It does so by:
 1. Importing the host Database from DNAC and adding it to Phpipam.
-2. Deleting any any stale hosts (addresses in IPAM terms) from the corresponding Phpipam subnet.
+2. Deleting any stale hosts (addresses in IPAM terms) from the corresponding Phpipam subnet.
 
 The RBAC control on the subnet management is natively built inside Phpipam,
 which can be easily consumed from the Web interface of Phpipam.
