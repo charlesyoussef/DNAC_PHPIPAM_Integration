@@ -1,0 +1,701 @@
+{
+	"info": {
+		"_postman_id": "de0469d2-d542-4522-be10-2cfa3e2f3b84",
+		"name": "phpipam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97a69a0b-b60f-4a90-b583-9216aa94c705",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", data.data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/user/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sections",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/sections/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"sections",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "First Free address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"hostname\": \"Server1_test\",\n\t\"description\": \"Test Server 1\",\n\t\"owner\": \"John Smith\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/addresses/first_free/{{subnetId}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"addresses",
+						"first_free",
+						"{{subnetId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Subnet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"hostname\": \"Server1_test\",\n\t\"description\": \"Test Server 1\",\n\t\"owner\": \"John Smith\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Child Subnet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/first_subnet/{{mask}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"first_subnet",
+						"{{mask}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subnet Info in CIDR",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/cidr/{{subnet}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"cidr",
+						"{{subnet}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subnet Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subnet usage",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/usage/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"usage",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subnet First-free",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/first_free/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"first_free",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subnet Addresses",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/addresses/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"addresses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Slave Subnets Recursive",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/slaves_recursive/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"slaves_recursive",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get First Available Subnet With Specified Mask",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/addresses/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"addresses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Subnet With Specified Mask",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/addresses/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						"addresses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Subnet Description",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"Test Test Test\"}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/subnets/{{subnetId}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"subnets",
+						"{{subnetId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Returns address from subnet by ip address",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"Test Test Test\"}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/addresses/{{sampleIp}}/{{subnetId}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"addresses",
+						"{{sampleIp}}",
+						"{{subnetId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search for address",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"Test Test Test\"}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/addresses/search/{{sampleIp}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"addresses",
+						"search",
+						"{{sampleIp}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"subnetId\": \"9\",\n            \"ip\": \"10.10.1.19\",\n            \"is_gateway\": \"0\",\n            \"description\": \"test last 19\",\n            \"hostname\": \"test hostname\",\n            \"mac\": \"0000.0000.0011\",\n            \"note\": \"tag123\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/addresses",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update address",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \n            \"is_gateway\": \"0\",\n            \"description\": \"test last 19\",\n            \"hostname\": \"test hostname\",\n            \"mac\": \"0000.0000.0011\",\n            \"note\": \"1557128081\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/addresses/21",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"addresses",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete address",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"subnetId\": \"3\",\n            \"ip\": \"10.10.1.19\",\n            \"is_gateway\": \"0\",\n            \"description\": \"test last 19\",\n            \"hostname\": \"test hostname\",\n            \"mac\": \"0000.0000.0011\",  \n            \"deviceId\": \"cat9k1\",\n            \"location\": \"site1\",\n            \"port\": \"gi1/1\"   \n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/api/{{appId}}/addresses/20",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"{{appId}}",
+						"addresses",
+						"20"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
