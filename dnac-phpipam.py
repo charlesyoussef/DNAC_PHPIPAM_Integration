@@ -128,7 +128,7 @@ def main():
 
     # Get the current time, to be used to tag addresses inserted in IPAM:
     time_tag = int(time.time())
-
+    
     # Get the list of hosts from DNAC:
     hosts_response = dnac_get_url("host")
     hosts_list = hosts_response["response"]
@@ -202,7 +202,7 @@ def main():
     subnet_addresses_response = ipam_get_url("subnets/%s/addresses/" %(PHPIPAM_SUBNET_ID))
     if subnet_addresses_response["success"]:
         for host in subnet_addresses_response["data"]:
-            if host["note"] != time_tag:
+            if host["note"] != str(time_tag):
                 # If the tag does not match time_tag, the host was not updated in this run
                 # so need to delete it. Else, do nothing
                 ipam_address_delete_url = "http://%s:%s/api/%s/addresses/%s/" % (PHPIPAM_HOST, PHPIPAM_PORT, PHPIPAM_APPID, host["id"])

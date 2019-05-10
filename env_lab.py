@@ -9,10 +9,10 @@ DNA_CENTER = {
 }
 
 PHPIPAM = {
-    "host": "localhost",
+    "host": "10.113.108.199",
     "port": 80,
     "username": "admin",
-    "password": "my-secret-pw",
+    "password": "dy}9Jw:BSa",
     "app_id": "dnac",
-    "subnetId": 9
+    "subnetId": 7
 }
